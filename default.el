@@ -391,7 +391,7 @@
 (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
 
 ;;; Haskell
-(use-package 'hc-haskell)
+(use-package hc-haskell)
 ;;; use emacs as mergetool
 (defvar ediff-after-quit-hooks nil
   "* Hooks to run after ediff or emerge is quit.")
