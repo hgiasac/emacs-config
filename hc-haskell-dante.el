@@ -9,8 +9,8 @@
 
 ;;; Code:
 
-;;; Dante
 
+;;; Dante
 (use-package dante
   :ensure t
   :after haskell-mode
@@ -18,23 +18,27 @@
   :init
   (add-hook 'haskell-mode-hook 'dante-mode)
   (add-hook 'haskell-mode-hook 'flycheck-mode)
+  
+  (when (locate-dominating-file default-directory "stack.yaml")
+    (setq dante-repl-command-line `("nix-shell" "--pure" "--run" (concat "stack repl " (or dante-target "")))))
   :diminish " λ"
-  :config
-  (progn
-    (flycheck-add-next-checker 'haskell-dante '(warning . haskell-hlint))
-    ;; https://github.com/shajra/example-nix
-    (setq dante-repl-command-line-methods-alist
-          (cons `(nix-new . ,(lambda (root)
-                               (dante-repl-by-file
-                                (projectile-project-root)
-                                '("shell.nix")
-                                `("nix-shell" "--run" "cabal new-repl"
-                                  ,(concat (projectile-project-root) "/shell.nix")))))
-                dante-repl-command-line-methods-alist))
-    ))
+					;:config
+					;(progn
+					;  (flycheck-add-next-checker 'haskell-dante '(warning . haskell-hlint))
+					;  ;; https://github.com/shajra/example-nix
+					;  (setq dante-repl-command-line-methods-alist
+					;        (cons `(nix-new . ,(lambda (root)
+					;                             (dante-repl-by-file
+					;                              (projectile-project-root)
+					;                              '("shell.nix")
+					;                              `("nix-shell" "--run" "cabal new-repl"
+					;                                ,(concat (projectile-project-root) "/shell.nix")))))
+					;              dante-repl-command-line-methods-alist))
+					;  
+					;  )
+  )
 
 
 (provide 'hc-haskell-dante)
 
-;;; hc-haskell-dante.el ends here
-
+;;; hc-haskell-dante.el ends here;
