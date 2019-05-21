@@ -1,3 +1,7 @@
+;;; my-project --- Projectile setup
+;;; Commentary
+
+;;; Code
 (use-package projectile
   :config
   (setq projectile-enable-caching nil)
@@ -23,7 +27,7 @@
                              "--files")) ; get file names matching the regex '' (all files)
                    " "))
       (advice-add 'projectile-get-ext-command :override #'modi/advice-projectile-use-rg)))
-)
+  )
 
 ;;; project navigation
 (use-package counsel-projectile
@@ -41,4 +45,3 @@
 (provide 'my-projects)
 
 ;;; my-projects ends here
-

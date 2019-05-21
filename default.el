@@ -1,18 +1,31 @@
+;;; default.el --- Default settings
+
+;;; Commentary:
+;;; Code:
+
 ;; globals`
+
 (package-initialize)
 ;; me me me
 (setq user-full-name "Toan Nguyen"
-      user-mail-address "hgiasac@gmail.com")
+      user-mail-address "hgiasac@gmail.com"
+      debug-on-error t
+      )
+
+;; set autosave directory
+(setq auto-save-file-name-transforms
+      `((".*" "~/.emacs-saves/" t)))
+
 					; initialize package
-(when (memq window-system '(mac ns x))
-  (exec-path-from-shell-initialize))
+;; (when (memq window-system '(mac ns x))
+;;   (exec-path-from-shell-initialize))
 
 (eval-when-compile
   (require 'use-package))
 
-(use-package my-core)
 (use-package my-keybinding)
 
+(use-package my-core)
 ;;; theme
 (use-package monokai-theme
   :load-path "themes"
@@ -36,7 +49,7 @@
   :commands (ranger)
   :config
   (setq
-   ranger-cleanup-eagerly t
+   ranger-cleanup-early t
    ranger-parent-depth 0
    ranger-max-preview-size 1
    ranger-dont-show-binary t
@@ -117,5 +130,9 @@
 
 ;;; Evil mode
 (use-package am-evil)
+
+;; Local Variables:
+;; byte-compile-warnings: (not free-vars)
+;; End:
 
 ;;; default.el ends here

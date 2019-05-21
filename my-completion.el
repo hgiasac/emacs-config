@@ -1,12 +1,18 @@
+;;; my-completion --- Completion module
+
+;;; Commentary:
+
+;;; Code:
+
 (use-package ivy
   :after flx
   :commands (ivy-switch-buffer)
   :config
-    (setq ivy-re-builders-alist
+  (setq ivy-re-builders-alist
         '((ivy-switch-buffer . ivy--regex-plus)
           (t . ivy--regex-fuzzy)))
-    (setq ivy-initial-inputs-alist nil)
-)
+  (setq ivy-initial-inputs-alist nil)
+  )
 
 
 ;;; `Counsel':
@@ -47,7 +53,11 @@
 ;;; I can't spell
 (use-package flycheck
   :defer 2
-  :config (global-flycheck-mode))
+  :init
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  :config
+  (global-flycheck-mode)
+  )
 
 ;;; I can't program
 (use-package company
@@ -68,3 +78,5 @@
   :config (company-quickhelp-mode))
 
 (provide 'my-completion)
+
+;; my-completion ends here

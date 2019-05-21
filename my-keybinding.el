@@ -1,4 +1,9 @@
-;; keybindings
+;;; my-keybinding --- Key-binding settings
+
+;;; Commentary:
+
+;;; Code:
+
 (require 'general)
 
 (general-define-key "C-'" 'avy-goto-word-1)
@@ -53,4 +58,3 @@
 
 (provide 'my-keybinding)
 ;;; my-keybinding.el ends here
-                                        ;

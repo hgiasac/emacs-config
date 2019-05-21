@@ -39,7 +39,8 @@
   :delight
   :config
   (evil-escape-mode 1)
-  (setq-default evil-escape-key-sequence "jk")
+  (setq-default evil-escape-key-sequence "jk"
+		evil-escape-delay 0.2)
   )
 
 ;;; `evil-collection':
