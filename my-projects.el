@@ -1,46 +1,46 @@
-;;; my-project --- Projectile setup
-;;; Commentary
+;;; my-projects.el --- Amalthea project configuration -*- lexical-binding: t -*-
 
-;;; Code
+;; This file is not part of GNU Emacs
+
+;; This file is free software; you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation; either version 3, or (at your option)
+;; any later version.
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; For a full copy of the GNU General Public License
+;; see <http://www.gnu.org/licenses/>.
+
+
+;;; Commentary:
+;; Configures Projectile for some sweet, sweet project awesomeness.
+
+;;; Code:
+;;; `projectile':
+;; Projectile is a program for working with projects in Emacs, it supports a ton
+;; of features out of the box that are awesome and useful, like searching for
+;; files only in the current project, recent files in current project and so on.
 (use-package projectile
-  :config
-  (setq projectile-enable-caching nil)
-  (projectile-mode) ;; I always want this?
-  ;; https://emacs.stackexchange.com/questions/16497/how-to-exclude-files-from-projectile
-  ;;; Default rg arguments
-  ;; https://github.com/BurntSushi/ripgrep
-  (when (executable-find "rg")
-    (progn
-      (defconst modi/rg-arguments
-        `("--line-number"                     ; line numbers
-          "--smart-case"
-          "--follow"                          ; follow symlinks
-          "--mmap")                           ; apply memory map optimization when possible
-        "Default rg arguments used in the functions in `projectile' package.")
+  :commands projectile-mode
+  :delight "Ⓟ"
+  :init
+  (progn
+    (csetq projectile-completion-system 'ivy ;; Use Ivy for completion
+           projectile-sort-order 'recentf    ;; Sort by using `recentf'
+           projectile-enable-caching t))     ;; Enable caching to speed up searching, finding files
+  :config (projectile-mode))
 
-      (defun modi/advice-projectile-use-rg ()
-        "Always use `rg' for getting a list of all files in the project."
-        (mapconcat 'identity
-                   (append '("\\rg") ; used unaliased version of `rg': \rg
-                           modi/rg-arguments
-                           '("--null" ; output null separated results,
-                             "--files")) ; get file names matching the regex '' (all files)
-                   " "))
-      (advice-add 'projectile-get-ext-command :override #'modi/advice-projectile-use-rg)))
-  )
-
-;;; project navigation
+;;; `counsel-projectile':
+;; Even though we've configured Projectile to use Ivy, we can extend it even
+;; more by also using Counsel too.
 (use-package counsel-projectile
-  :commands (
-    counsel-projectile-find-file
-    counsel-projectile-rg
-    counsel-projectile
-    counsel-projectile-ag
-    )
-  :config
-  (counsel-projectile-mode)
-  )
-
+  :after projectile
+  :commands counsel-projectile-mode
+  :init (counsel-projectile-mode))
 
 (provide 'my-projects)
 

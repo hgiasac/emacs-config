@@ -1,38 +1,19 @@
-;;; default.el --- Default settings
-
-;;; Commentary:
-;;; Code:
-
 ;; globals`
-
 (package-initialize)
 ;; me me me
 (setq user-full-name "Toan Nguyen"
-      user-mail-address "hgiasac@gmail.com"
-      debug-on-error t
-      )
-
-;; set autosave directory
-(setq auto-save-file-name-transforms
-      `((".*" "~/.emacs-saves/" t)))
-
+      user-mail-address "hgiasac@gmail.com")
 					; initialize package
-;; (when (memq window-system '(mac ns x))
-;;   (exec-path-from-shell-initialize))
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
 
 (eval-when-compile
   (require 'use-package))
 
-(use-package my-keybinding)
-;;; Default Completion
-(use-package my-completion)
-
 (use-package my-core)
-					;
-;;; Evil mode
-(use-package am-evil)
+(use-package my-keybinding)
 
-;; theme
+;;; theme
 (use-package monokai-theme
   :load-path "themes"
   :config
@@ -55,7 +36,7 @@
   :commands (ranger)
   :config
   (setq
-   ranger-cleanup-early t
+   ranger-cleanup-eagerly t
    ranger-parent-depth 0
    ranger-max-preview-size 1
    ranger-dont-show-binary t
@@ -125,13 +106,16 @@
 
 ;;; Git
 (use-package my-git)
+;;; Default Completion
+(use-package my-completion)
+
 ;;; Haskell
 (use-package hc-haskell)
 
 ;;; Projectile
-;; (use-package my-projects)
-;; Local Variables:
-;; byte-compile-warnings: (not free-vars)
-;; End:
+(use-package my-projects)
+
+;;; Evil mode
+(use-package am-evil)
 
 ;;; default.el ends here
