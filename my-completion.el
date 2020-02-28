@@ -5,6 +5,7 @@
 ;;; Code:
 
 (use-package ivy
+  :ensure t
   :after flx
   :commands (ivy-switch-buffer)
   :config
@@ -19,6 +20,7 @@
 ;; Counsel is built on top of Ivy and contains a bunch of improved interfaces
 ;; for mechanisms in Emacs, like finding files or opening recent files etc.
 (use-package counsel
+  :ensure t
   :demand t
   :delight
   :general
@@ -45,6 +47,7 @@
 ;; This is just a straight upgrade of the default search in Emacs. Use it and
 ;; love it.
 (use-package swiper
+  :ensure t
   :general
   (general-define-key "C-s" 'swiper)
   (general-nmap "/" 'swiper)
@@ -52,6 +55,7 @@
 
 ;;; I can't spell
 (use-package flycheck
+  :ensure t
   :defer 2
   :init
   (setq flycheck-check-syntax-automatically '(save mode-enabled))
@@ -61,6 +65,7 @@
 
 ;;; I can't program
 (use-package company
+  :ensure t
   :diminish company-mode
   :commands (company-mode global-company-mode)
   :defer 1
@@ -72,6 +77,7 @@
 ;; When idling on a chosen completion candidate, show the items help in a popup
 ;; box next to the completion window.
 (use-package company-quickhelp
+  :ensure t
   :after company
   :commands company-quickhelp-mode
   :init (csetq company-quickhelp-use-propertized-text t) ;; Allow text to have properties like size, color etc

@@ -25,6 +25,7 @@
 ;; of features out of the box that are awesome and useful, like searching for
 ;; files only in the current project, recent files in current project and so on.
 (use-package projectile
+  :ensure t
   :commands projectile-mode
   :delight "Ⓟ"
   :init
@@ -38,6 +39,7 @@
 ;; Even though we've configured Projectile to use Ivy, we can extend it even
 ;; more by also using Counsel too.
 (use-package counsel-projectile
+  :ensure t
   :after projectile
   :commands counsel-projectile-mode
   :init (counsel-projectile-mode))

@@ -4,8 +4,8 @@
 
 ;;; Code:
 
-(require 'general)
-
+(use-package general
+  :ensure t)
 (general-define-key "C-'" 'avy-goto-word-1)
 (general-define-key
  :keymaps 'normal

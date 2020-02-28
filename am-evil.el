@@ -36,6 +36,7 @@
 
 ;;; `evil-escapse`:
 (use-package evil-escape
+  :ensure t
   :delight
   :config
   (evil-escape-mode 1)
@@ -47,6 +48,7 @@
 ;; A collective effort to create keybindings for various packages that work with
 ;; Evil, probably the best thing since Evil.
 (use-package evil-collection
+  :ensure t
   :after evil
   :config
   (evil-collection-init))
@@ -61,15 +63,18 @@
 ;;; `evil-commentary':
 ;; Quickly comment out a single line or a region. It's really neat.
 (use-package evil-commentary
+  :ensure t
   :delight
   :commands evil-commentary-mode
   :init (evil-commentary-mode))
+
 
 ;;; `evil-surround':
 ;; Incredibly handy package, if you want to change what surrounds a text you can
 ;; use this to easily do that. Change `[' and it's closing brother to a pair of
 ;; `()'? `cs[(' and you're done.
 (use-package evil-surround
+  :ensure t
   :commands global-evil-surround-mode
   :init (global-evil-surround-mode))
 
@@ -77,6 +82,7 @@
 ;; Show visual hints for what the action you just did. It's hard to tell without
 ;; explaining it, I recommend you check out the README on GitHub.
 (use-package evil-goggles
+  :ensure t
   :delight
   :commands evil-goggles-mode
   :init (evil-goggles-mode))

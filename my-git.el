@@ -1,6 +1,7 @@
 ;
 ;;; git
 (use-package magit
+  :ensure t
   :defer
   :commands (magit-status magit-dispatch-popup magit-push-to-remote)
   )
